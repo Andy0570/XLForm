@@ -25,10 +25,12 @@
 
 #import "XLFormViewController.h"
 
+// 导航视图控制器
 @interface NativeEventNavigationViewController : UINavigationController
 
 @end
 
+// 日历表单
 @interface NativeEventFormViewController : XLFormViewController
 
 @end

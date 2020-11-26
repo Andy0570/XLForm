@@ -28,16 +28,20 @@
 
 @implementation CLLocationValueTrasformer
 
+// 被转换成的类型
 + (Class)transformedValueClass
 {
     return [NSString class];
 }
 
+// 是否允许反向转换
 + (BOOL)allowsReverseTransformation
 {
     return NO;
 }
 
+// 被转换成的类型值格式
+// MapViewController 给代理协议传的值是 CLLocation 对象，需要将其转换为字符串对象
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;

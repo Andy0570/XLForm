@@ -51,26 +51,32 @@ NSString *const kCountDownTimer = @"countDownTimer";
         
         form = [XLFormDescriptor formDescriptorWithTitle:@"Date & Time"];
         
-        section = [XLFormSectionDescriptor formSectionWithTitle:@"Inline Dates"];
+        // --------------------------------------------------------------
+        section = [XLFormSectionDescriptor formSectionWithTitle:@"内嵌日期"];
+        section.footerTitle = @"rowType:\n1.XLFormRowDescriptorTypeDateInline\n2.XLFormRowDescriptorTypeTimeInline\n3.XLFormRowDescriptorTypeDateTimeInline\n4.XLFormRowDescriptorTypeCountDownTimerInline";
         [form addFormSection:section];
         
-        // Date
+        // Date 日期
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kDateInline rowType:XLFormRowDescriptorTypeDateInline title:@"Date"];
+        // !!!: 设置日期显示地区文字，中文
+        [row.cellConfigAtConfigure setObject:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"] forKey:@"locale"];
+        // !!!: 设置最小日期和最大日期
+        [row.cellConfigAtConfigure setObject:[NSDate new] forKey:@"minimumDate"];
+        [row.cellConfigAtConfigure setObject:[NSDate dateWithTimeIntervalSinceNow:(60*60*24*365*10)] forKey:@"maximumDate"];
         row.value = [NSDate new];
-        [row.cellConfigAtConfigure setObject:[NSLocale localeWithLocaleIdentifier:@"FR_fr" ] forKey:@"locale"];
         [section addFormRow:row];
         
-        // Time
+        // Time 时间
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kTimeInline rowType:XLFormRowDescriptorTypeTimeInline title:@"Time"];
         row.value = [NSDate new];
         [section addFormRow:row];
         
-        // DateTime
+        // DateTime 日期和时间
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kDateTimeInline rowType:XLFormRowDescriptorTypeDateTimeInline title:@"Date Time"];
         row.value = [NSDate new];
         [section addFormRow:row];
         
-        // CountDownTimer
+        // CountDownTimer 倒计时器
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kCountDownTimerInline rowType:XLFormRowDescriptorTypeCountDownTimerInline title:@"Countdown Timer"];
         NSDateComponents * dateComp = [NSDateComponents new];
         dateComp.hour = 0;
@@ -80,8 +86,9 @@ NSString *const kCountDownTimer = @"countDownTimer";
         row.value = [calendar dateFromComponents:dateComp];
         [section addFormRow:row];
         
-        
-        section = [XLFormSectionDescriptor formSectionWithTitle:@"Dates"];
+        // --------------------------------------------------------------
+        section = [XLFormSectionDescriptor formSectionWithTitle:@"半模态日期"];
+        section.footerTitle = @"rowType:\n1.XLFormRowDescriptorTypeDate\n2.XLFormRowDescriptorTypeTime\n3.XLFormRowDescriptorTypeDateTime\n4.XLFormRowDescriptorTypeCountDownTimer";
         [form addFormSection:section];
         
         // Date
@@ -107,8 +114,9 @@ NSString *const kCountDownTimer = @"countDownTimer";
         row.value = [calendar dateFromComponents:dateComp];
         [section addFormRow:row];
         
-        section = [XLFormSectionDescriptor formSectionWithTitle:@"Disabled Dates"];
-        //section.footerTitle = @"DatesFormViewController.h";
+        // --------------------------------------------------------------
+        section = [XLFormSectionDescriptor formSectionWithTitle:@"禁选日期"];
+        section.footerTitle = @"row.disabled = @YES";
         [form addFormSection:section];
         
         // Date
@@ -118,10 +126,11 @@ NSString *const kCountDownTimer = @"countDownTimer";
         row.value = [NSDate new];
         [section addFormRow:row];
         
-        // DatePicker
+        // --------------------------------------------------------------
         section = [XLFormSectionDescriptor formSectionWithTitle:@"DatePicker"];
         [form addFormSection:section];
         
+        // DatePicker
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kDatePicker rowType:XLFormRowDescriptorTypeDatePicker];
         [row.cellConfigAtConfigure setObject:@(UIDatePickerModeDate) forKey:@"datePicker.datePickerMode"];
         row.value = [NSDate new];

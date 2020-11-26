@@ -33,7 +33,10 @@
 @end
 
 @implementation MapAnnotation
+
+// XLFormRowDescriptorViewController 协议需要实现的属性
 @synthesize coordinate = _coordinate;
+
 -(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
 {
     _coordinate = newCoordinate;
@@ -62,7 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     [self.view addSubview:self.mapView];
     self.mapView.delegate = self;
     if (self.rowDescriptor.value){
@@ -99,10 +102,11 @@
    fromOldState:(MKAnnotationViewDragState)oldState
 {
     if (newState == MKAnnotationViewDragStateEnding){
+        
+        // 给代理协议的属性传值， CLLocation 对象
         self.rowDescriptor.value = [[CLLocation alloc] initWithLatitude:view.annotation.coordinate.latitude longitude:view.annotation.coordinate.longitude];
         self.title = [NSString stringWithFormat:@"%0.4f, %0.4f", view.annotation.coordinate.latitude, view.annotation.coordinate.longitude];
     }
 }
-
 
 @end

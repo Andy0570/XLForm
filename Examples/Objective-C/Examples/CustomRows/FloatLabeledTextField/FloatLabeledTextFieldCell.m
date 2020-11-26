@@ -44,6 +44,7 @@ const static CGFloat kFloatingLabelFontSize = 11.0f;
 
 +(void)load
 {
+    // 将自定义cell类型添加到字典中
     [XLFormViewController.cellClassesForRowDescriptorTypes setObject:[FloatLabeledTextFieldCell class] forKey:XLFormRowDescriptorTypeFloatLabeledTextField];
 }
 

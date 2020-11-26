@@ -68,23 +68,28 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     XLFormDescriptor * form = [XLFormDescriptor formDescriptorWithTitle:@"Other Cells"];
     XLFormSectionDescriptor * section;
     
+    // --------------------------------------------------------------
     // Basic Information
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Other Cells"];
-    section.footerTitle = @"OthersFormViewController.h";
+    section.footerTitle = @"rowType:\n1.XLFormRowDescriptorTypeBooleanSwitch\n2.XLFormRowDescriptorTypeBooleanCheck\n3.XLFormRowDescriptorTypeStepCounter\n4.XLFormRowDescriptorTypeSelectorSegmentedControl\n5.XLFormRowDescriptorTypeSlider\n6.XLFormRowDescriptorTypeImage\n.7XLFormRowDescriptorTypeInfo";
     [form addFormSection:section];
     
-    // Switch
+    // Switch - 开关
     XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:kSwitchBool rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Switch"];
-    [row.cellConfigAtConfigure setObject:[UIColor redColor] forKey:@"switchControl.onTintColor"];
+    // !!!: 设置开关打开的颜色为红色（默认绿色）
+    [row.cellConfigAtConfigure setObject:UIColor.redColor forKey:@"switchControl.onTintColor"];
+    // 设置开关状态
+    // row.value = _model.isSelected ? @YES : @NO;
     [section addFormRow:row];
+    
     // check
     [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:kSwitchCheck rowType:XLFormRowDescriptorTypeBooleanCheck title:@"Check"]];
     
-    // step counter
+    // step counter - 步进器
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kStepCounter rowType:XLFormRowDescriptorTypeStepCounter title:@"Step counter"];
     row.value = @50;
-    [row.cellConfigAtConfigure setObject:@YES forKey:@"stepControl.wraps"];
-    [row.cellConfigAtConfigure setObject:@10 forKey:@"stepControl.stepValue"];
+    [row.cellConfigAtConfigure setObject:@YES forKey:@"stepControl.wraps"]; // 轮回：最大-最小
+    [row.cellConfigAtConfigure setObject:@10 forKey:@"stepControl.stepValue"]; // // 步进值，默认为1
     [row.cellConfigAtConfigure setObject:@10 forKey:@"stepControl.minimumValue"];
     [row.cellConfigAtConfigure setObject:@100 forKey:@"stepControl.maximumValue"];
     [section addFormRow:row];
@@ -109,18 +114,30 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     row.value = [UIImage imageNamed:@"default_avatar"];
     [section addFormRow:row];
 
-    // Info cell
+    /**
+     Info 类型
+     
+     XLFormRowDescriptorTypeInfo 类型的 cell 是用 XLFormSelectorCell 封装的，而该类并没有对 XLFormTextFieldLengthPercentage 属性作 KVC 编码，
+     因此你不可以设置修改其文本长度或其他 KVC 设置：
+     // !!!: 你不能设置文本显示的长度
+     [infoRowDescriptor.cellConfigAtConfigure setObject:[NSNumber numberWithFloat:0.7]
+                                                 forKey:XLFormTextFieldLengthPercentage];
+
+     // !!!: 你也不能修改文本的颜色
+     [row.cellConfig setObject:[UIColor flatMintColor] forKey:@"textField.color"];
+     */
     XLFormRowDescriptor *infoRowDescriptor = [XLFormRowDescriptor formRowDescriptorWithTag:kInfo rowType:XLFormRowDescriptorTypeInfo];
     infoRowDescriptor.title = @"Version";
     infoRowDescriptor.value = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [section addFormRow:infoRowDescriptor];
     
     
+    // --------------------------------------------------------------
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Buttons"];
-    section.footerTitle = @"Blue buttons will show a message when Switch is ON";
+    section.footerTitle = @"当 Switch 开关打开时，点击蓝色按钮可以弹出消息.";
     [form addFormSection:section];
     
-    // Button
+    // Button - 按钮
     XLFormRowDescriptor * buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:kButton rowType:XLFormRowDescriptorTypeButton title:@"Button"];
     buttonRow.action.formSelector = @selector(didTouchButton:);
     [section addFormRow:buttonRow];
@@ -128,9 +145,12 @@ NSString *const kButtonWithStoryboardId = @"buttonWithStoryboardId";
     
     // Left Button
     XLFormRowDescriptor * buttonLeftAlignedRow = [XLFormRowDescriptor formRowDescriptorWithTag:kButtonLeftAligned rowType:XLFormRowDescriptorTypeButton title:@"Button with Block"];
+    // 设置了文本对齐方式、文本字体颜色和辅助箭头
     [buttonLeftAlignedRow.cellConfig setObject:@(NSTextAlignmentNatural) forKey:@"textLabel.textAlignment"];
+    [buttonLeftAlignedRow.cellConfig setObject:UIColor.greenColor forKey:@"textLabel.textColor"];
     [buttonLeftAlignedRow.cellConfig setObject:@(UITableViewCellAccessoryDisclosureIndicator) forKey:@"accessoryType"];
     
+    // Block 方式触发按钮点击方法
     __typeof(self) __weak weakSelf = self;
     buttonLeftAlignedRow.action.formBlock = ^(XLFormRowDescriptor * sender){
         if ([[sender.sectionDescriptor.formDescriptor formRowWithTag:kSwitchBool].value boolValue]){

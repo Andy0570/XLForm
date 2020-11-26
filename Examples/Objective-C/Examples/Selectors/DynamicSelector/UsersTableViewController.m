@@ -51,6 +51,7 @@
         [self.contentView addSubview:self.userImage];
         [self.contentView addSubview:self.userName];
         
+        // 设置布局约束
         [self.contentView addConstraints:[self layoutConstraints]];
     }
     return self;

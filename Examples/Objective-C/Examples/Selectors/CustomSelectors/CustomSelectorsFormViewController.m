@@ -59,7 +59,7 @@ NSString *const kSelectorMapPopover = @"selectorMapPopover";
             // Selector PopOver
             row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorMapPopover rowType:XLFormRowDescriptorTypeSelectorPopover title:@"Coordinate PopOver"];
             row.action.viewControllerClass = [MapViewController class];
-            row.valueTransformer = [CLLocationValueTrasformer class];
+            row.valueTransformer = [CLLocationValueTrasformer class]; // 转换器对象 
             row.value = [[CLLocation alloc] initWithLatitude:-33 longitude:-56];
             [section addFormRow:row];
         }

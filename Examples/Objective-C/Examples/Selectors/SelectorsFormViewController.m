@@ -30,6 +30,12 @@
 #import "DynamicSelectorsFormViewController.h"
 #import "SelectorsFormViewController.h"
 
+// 自定义城市选择器
+#import "HQLProvinceManager.h"
+#import "HQLProvincePickViewViewController.h"
+#import "HQLCityPickerCell.h"
+#import "HQLCityInlinePickerCell.h"
+
 NSString *const kSelectorPush = @"selectorPush";
 NSString *const kSelectorPopover = @"selectorPopover";
 NSString *const kSelectorActionSheet = @"selectorActionSheet";
@@ -50,6 +56,11 @@ NSString *const kSelectorWithSegueClass = @"selectorWithSegueClass";
 NSString *const kSelectorWithNibName = @"selectorWithNibName";
 NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
 
+NSString *const kProvincePickView = @"HQLProvincePickViewViewController";
+NSString *const kCityPickerView = @"HQLCityPickerCell";
+NSString *const kInlineProvincePickView = @"HQLCityInlinePickerCell";
+
+
 #pragma mark - NSValueTransformer
 
 @interface NSArrayValueTrasformer : NSValueTransformer
@@ -62,6 +73,7 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     return [NSString class];
 }
 
+// 允许反向转换
 + (BOOL)allowsReverseTransformation
 {
     return NO;
@@ -83,7 +95,7 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
 
 @end
 
-
+// 自定义的标准语言转换类
 @interface ISOLanguageCodesValueTranformer : NSValueTransformer
 @end
 
@@ -139,24 +151,24 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     XLFormSectionDescriptor * section;
     XLFormRowDescriptor * row;
     
-    // Basic Information
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Selectors"];
-    section.footerTitle = @"SelectorsFormViewController.h";
+    // Basic Information 选择器
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"选择器"];
+    section.footerTitle = @"rowType:\n1.XLFormRowDescriptorTypeSelectorPush\n2.XLFormRowDescriptorTypeSelectorPopover(iPad)\n2.XLFormRowDescriptorTypeSelectorActionSheet\n3.XLFormRowDescriptorTypeSelectorAlertView\n4.XLFormRowDescriptorTypeSelectorLeftRight\n5.XLFormRowDescriptorTypeSelectorPickerView";
     [form addFormSection:section];
     
     
     // Selector Push
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorPush rowType:XLFormRowDescriptorTypeSelectorPush title:@"Push"];
+    // 该数组中存放的 item 表示：选择器的待选项
     row.selectorOptions = @[[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Option 1"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Option 2"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Option 3"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Option 4"],
-                            [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Option 5"]
-                            ];
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Option 5"]];
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Option 2"];
     [section addFormRow:row];
     
-    // Selector Popover
+    // Selector Popover - 如果是 iPad 设备，则使用 XLFormRowDescriptorTypeSelectorPopover
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad){
         row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorPopover rowType:XLFormRowDescriptorTypeSelectorPopover title:@"PopOver"];
         row.selectorOptions = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4", @"Option 5", @"Option 6"];
@@ -175,9 +187,6 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Option 3"];
     [section addFormRow:row];
     
-    
-    
-    
     // Selector Alert View
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorAlertView rowType:XLFormRowDescriptorTypeSelectorAlertView title:@"Alert View"];
     row.selectorOptions = @[[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Option 1"],
@@ -189,12 +198,11 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Option 3"];
     [section addFormRow:row];
     
-    
-    
-    // Selector Left Right
+    // MARK: Selector Left Right - 左右联动选择器
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorLeftRight rowType:XLFormRowDescriptorTypeSelectorLeftRight title:@"Left Right"];
+    // 设置左侧选择器默认值
     row.leftRightSelectorLeftOptionSelected = [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Option 2"];
-    
+    // 右侧选择器数组
     NSArray * rightOptions =  @[[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Right Option 1"],
                                 [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Right Option 2"],
                                 [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Right Option 3"],
@@ -202,55 +210,66 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
                                 [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Right Option 5"]
                                 ];
     
-    // create right selectors
+    // 创建右侧选择器
     NSMutableArray * leftRightSelectorOptions = [[NSMutableArray alloc] init];
+    
+    // 左侧为 0 时，右侧可选项
     NSMutableArray * mutableRightOptions = [rightOptions mutableCopy];
     [mutableRightOptions removeObjectAtIndex:0];
     XLFormLeftRightSelectorOption * leftRightSelectorOption = [XLFormLeftRightSelectorOption formLeftRightSelectorOptionWithLeftValue:[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Option 1"] httpParameterKey:@"option_1" rightOptions:mutableRightOptions];
     [leftRightSelectorOptions addObject:leftRightSelectorOption];
     
+    // 左侧为 1 时，右侧可选项
     mutableRightOptions = [rightOptions mutableCopy];
     [mutableRightOptions removeObjectAtIndex:1];
     leftRightSelectorOption = [XLFormLeftRightSelectorOption formLeftRightSelectorOptionWithLeftValue:[XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Option 2"] httpParameterKey:@"option_2" rightOptions:mutableRightOptions];
     leftRightSelectorOption.leftValueChangePolicy = XLFormLeftRightSelectorOptionLeftValueChangePolicyChooseFirstOption;
     [leftRightSelectorOptions addObject:leftRightSelectorOption];
     
+    // 左侧为 2 时，右侧可选项
     mutableRightOptions = [rightOptions mutableCopy];
     [mutableRightOptions removeObjectAtIndex:2];
     leftRightSelectorOption = [XLFormLeftRightSelectorOption formLeftRightSelectorOptionWithLeftValue:[XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Option 3"]  httpParameterKey:@"option_3" rightOptions:mutableRightOptions];
     leftRightSelectorOption.leftValueChangePolicy = XLFormLeftRightSelectorOptionLeftValueChangePolicyChooseLastOption;
     [leftRightSelectorOptions addObject:leftRightSelectorOption];
     
+    // 左侧为 3 时，右侧可选项
     mutableRightOptions = [rightOptions mutableCopy];
     [mutableRightOptions removeObjectAtIndex:3];
     leftRightSelectorOption = [XLFormLeftRightSelectorOption formLeftRightSelectorOptionWithLeftValue:[XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Option 4"] httpParameterKey:@"option_4" rightOptions:mutableRightOptions];
     [leftRightSelectorOptions addObject:leftRightSelectorOption];
     
+    // 左侧为 4 时，右侧可选项
     mutableRightOptions = [rightOptions mutableCopy];
     [mutableRightOptions removeObjectAtIndex:4];
     leftRightSelectorOption = [XLFormLeftRightSelectorOption formLeftRightSelectorOptionWithLeftValue:[XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Option 5"] httpParameterKey:@"option_5" rightOptions:mutableRightOptions];
     [leftRightSelectorOptions addObject:leftRightSelectorOption];
     
+    // 设置 row 的选择器数组
     row.selectorOptions  = leftRightSelectorOptions;
+    // 设置右侧选择器默认值
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Right Option 4"];
     [section addFormRow:row];
     
+    // MARK: PickerView
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kSelectorPickerView rowType:XLFormRowDescriptorTypeSelectorPickerView title:@"Picker View"];
+    // 传递的值 <-> 显示的值 映射
     row.selectorOptions = @[[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Option 1"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Option 2"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Option 3"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Option 4"],
-                            [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Option 5"]
-                            ];
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Option 5"]];
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Option 4"];
     [section addFormRow:row];
     
     
     
     // --------- Fixed Controls
-    
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Fixed Controls"];
+    // MARK: 固定选择控制器
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"固定选择控制器"];
+    section.footerTitle = @"rowType:XLFormRowDescriptorTypePicker";
     [form addFormSection:section];
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kPickerView rowType:XLFormRowDescriptorTypePicker];
     row.selectorOptions = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4", @"Option 5", @"Option 6"];
     row.value = @"Option 1";
@@ -259,18 +278,26 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     
     
     // --------- Inline Selectors
+    // MARK: Inline Selectors，内嵌选择器
     
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Inline Selectors"];
     [form addFormSection:section];
+    
+    // 内联选择器
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultipleSelector rowType:XLFormRowDescriptorTypeSelectorPickerViewInline title:@"Inline Picker View"];
+    // 设置可选选项
     row.selectorOptions = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4", @"Option 5", @"Option 6"];
+    // 设置默认显示值
     row.value = @"Option 6";
+    // 设置 cell 高度
+    row.height = 50;
     [section addFormRow:row];
     
     // --------- MultipleSelector
-    
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Multiple Selectors"];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"可多选选择器"];
+    section.footerTitle = @"rowType:XLFormRowDescriptorTypeMultipleSelector";
     [form addFormSection:section];
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultipleSelector rowType:XLFormRowDescriptorTypeMultipleSelector title:@"Multiple Selector"];
     row.selectorOptions = @[@"Option 1", @"Option 2", @"Option 3", @"Option 4", @"Option 5", @"Option 6"];
     row.value = @[@"Option 1", @"Option 3", @"Option 4", @"Option 5", @"Option 6"];
@@ -285,10 +312,10 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     [section addFormRow:row];
     
     
-    // Language multiple selector
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultipleSelector rowType:XLFormRowDescriptorTypeMultipleSelector title:@"Multiple Selector"];
+    // 可选择多个语言的选择器
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultipleSelector rowType:XLFormRowDescriptorTypeMultipleSelector title:@"选择语言"];
     row.selectorOptions = [NSLocale ISOLanguageCodes];
-    row.selectorTitle = @"Languages";
+    row.selectorTitle = @"表单页面的标题";
     row.valueTransformer = [ISOLanguageCodesValueTranformer class];
     row.value = [NSLocale preferredLanguages];
     [section addFormRow:row];
@@ -302,27 +329,55 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
         [section addFormRow:row];
     }
     
-    
+    // 以下两个都是 XLFormRowDescriptorTypeButton 按钮方式
     // --------- Dynamic Selectors
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Dynamic Selectors"];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"动态选择器"];
+    section.footerTitle = @"XLFormRowDescriptorTypeButton";
     [form addFormSection:section];
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kDynamicSelectors rowType:XLFormRowDescriptorTypeButton title:@"Dynamic Selectors"];
     row.action.viewControllerClass = [DynamicSelectorsFormViewController class];
     [section addFormRow:row];
     
     // --------- Custom Selectors
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Custom Selectors"];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"自定义选择器"];
     [form addFormSection:section];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomSelectors rowType:XLFormRowDescriptorTypeButton title:@"Custom Selectors"];
+    
+    // 地理坐标
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomSelectors rowType:XLFormRowDescriptorTypeButton title:@"地理坐标"];
     row.action.viewControllerClass = [CustomSelectorsFormViewController class];
     [section addFormRow:row];
     
+    // !!!: 自定义城市选择器，视图控制器
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kProvincePickView rowType:XLFormRowDescriptorTypeSelectorPush title:@"城市"];
+    row.action.viewControllerClass = HQLProvincePickViewViewController.class;
+    row.value = @"江苏省,市本级";
+    [section addFormRow:row];
     
+    // !!!: 自定义城市选择器，pick view
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kCityPickerView rowType:HQLFormRowDescriptorTypeCityPickerView title:@"城市"];
+    row.required = YES;
+    // 根据用户信息初始化当前城市
+    HQLProvinceManager *provinceManager = [HQLProvinceManager sharedManager];
+    [provinceManager setCurrentCityName:@"南京"];
+    row.value = provinceManager;
+    row.noValueDisplayText = @"请选择当前城市";
+    [section addFormRow:row];
+    
+    // !!!: 自定义城市选择器，inline picker view
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kInlineProvincePickView rowType:HQLFormRowDescriptorTypeCityInlinePickerCell title:@"城市"];
+    row.required = YES;
+    row.value = provinceManager;
+    row.noValueDisplayText = @"请选择当前城市";
+    [section addFormRow:row];
+    
+    // 选择器方式
     // --------- Selector definition types
     
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Selectors"];
+    section.footerTitle = @"action 方式不同";
     [form addFormSection:section];
     
     // selector with segue class
@@ -376,6 +431,8 @@ NSString *const kSelectorWithStoryboardId = @"selectorWithStoryboardId";
     self.navigationItem.rightBarButtonItem = barButton;
 }
 
+#pragma mark - IBActions
+// 禁用／启用整个表单输入
 -(void)disableEnable:(UIBarButtonItem *)button
 {
     self.form.disabled = !self.form.disabled;

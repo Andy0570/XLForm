@@ -25,6 +25,8 @@
 
 #import <Foundation/Foundation.h>
 
+// 转换器对象：在 CLLocation 和 NSString 之间相互转换
+// row.valueTransformer = [CLLocationValueTrasformer class];
 @interface CLLocationValueTrasformer : NSValueTransformer
 
 @end

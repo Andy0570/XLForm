@@ -15,15 +15,20 @@ NSString * const XLFormRowDescriptorTypeSegmentedControl = @"XLFormRowDescriptor
 
 +(void)load
 {
+    // 加载之前把两个 cell 类添加到字典中
+    // XLFormRowDescriptorTypeSegmentedInline 类添加到字典中
     [XLFormViewController.cellClassesForRowDescriptorTypes setObject:[XLFormInlineSegmentedCell class] forKey:XLFormRowDescriptorTypeSegmentedInline];
+    // XLFormRowDescriptorTypeSegmentedControl 添加到 XLFormRowDescriptorTypeSegmentedInline 中。
     [XLFormViewController.inlineRowDescriptorTypesForRowDescriptorTypes setObject:XLFormRowDescriptorTypeSegmentedControl forKey:XLFormRowDescriptorTypeSegmentedInline];
 }
 
+// 是否能成为第一响应者
 - (BOOL)canBecomeFirstResponder
 {
     return YES;
 }
 
+// 成为第一响应者方法
 -(BOOL)becomeFirstResponder
 {
     if (self.isFirstResponder){
@@ -33,15 +38,21 @@ NSString * const XLFormRowDescriptorTypeSegmentedControl = @"XLFormRowDescriptor
     if (result){
         XLFormRowDescriptor * inlineRowDescriptor = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:[XLFormViewController inlineRowDescriptorTypesForRowDescriptorTypes][self.rowDescriptor.rowType]];
         UITableViewCell<XLFormDescriptorCell> * cell = [inlineRowDescriptor cellForFormController:self.formViewController];
+        
+        // NSAssert() 是一个宏，用于开发阶段调试程序中的 Bug，通过为 NSAssert() 传递条件表达式来断定是否属于 Bug，
+        // 满足条件返回真值，程序继续运行，如果返回假值，则抛出异常，并且可以自定义异常描述。
         NSAssert([cell conformsToProtocol:@protocol(XLFormInlineRowDescriptorCell)], @"inline cell must conform to XLFormInlineRowDescriptorCell");
+        
         UITableViewCell<XLFormInlineRowDescriptorCell> * inlineCell = (UITableViewCell<XLFormInlineRowDescriptorCell> *)cell;
         inlineCell.inlineRowDescriptor = self.rowDescriptor;
+        // 在下方新增行
         [self.rowDescriptor.sectionDescriptor addFormRow:inlineRowDescriptor afterRow:self.rowDescriptor];
         [self.formViewController ensureRowIsVisible:inlineRowDescriptor];
     }
     return result;
 }
 
+// 放弃第一响应者对象
 -(BOOL)resignFirstResponder
 {
     if (![self isFirstResponder]) {
@@ -53,6 +64,7 @@ NSString * const XLFormRowDescriptorTypeSegmentedControl = @"XLFormRowDescriptor
     XLFormSectionDescriptor * formSection = [self.formViewController.form.formSections objectAtIndex:nextRowPath.section];
     BOOL result = [super resignFirstResponder];
     if (result) {
+        // 移除下一行
         [formSection removeFormRow:nextFormRow];
     }
     return result;
@@ -98,12 +110,10 @@ NSString * const XLFormRowDescriptorTypeSegmentedControl = @"XLFormRowDescriptor
 
 #pragma mark - Helpers
 
--(NSString *)valueDisplayText
-{
+// 显示详细文本
+- (NSString *)valueDisplayText {
     return (self.rowDescriptor.value ? [self.rowDescriptor.value displayText] : self.rowDescriptor.noValueDisplayText);
 }
-
-
 
 @end
 
@@ -118,6 +128,7 @@ NSString * const XLFormRowDescriptorTypeSegmentedControl = @"XLFormRowDescriptor
 
 +(void)load
 {
+    // XLFormRowDescriptorTypeSegmentedControl 添加到字典中
     [XLFormViewController.cellClassesForRowDescriptorTypes setObject:[XLFormInlineSegmentedControl class] forKey:XLFormRowDescriptorTypeSegmentedControl];
 }
 

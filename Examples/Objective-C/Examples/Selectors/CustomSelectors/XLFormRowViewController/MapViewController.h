@@ -27,6 +27,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 实现了代理协议 XLFormRowDescriptorViewController
 @interface MapViewController : UIViewController <XLFormRowDescriptorViewController>
 
 @end

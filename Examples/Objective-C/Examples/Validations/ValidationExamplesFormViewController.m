@@ -84,6 +84,7 @@ NSString * const kValidationInteger = @"kInteger";
     [row.cellConfigAtConfigure setObject:@"Required..." forKey:@"textField.placeholder"];
     [row.cellConfigAtConfigure setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     row.required = YES;
+    // MARK: 添加自定义验证
     [row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"At least 6, max 32 characters" regex:@"^(?=.*\\d)(?=.*[A-Za-z]).{6,32}$"]];
     [section addFormRow:row];
     
@@ -97,6 +98,7 @@ NSString * const kValidationInteger = @"kInteger";
     [row.cellConfigAtConfigure setObject:@"Required..." forKey:@"textField.placeholder"];
     [row.cellConfigAtConfigure setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     row.required = YES;
+    // MARK: 添加自定义验证
     [row addValidator:[XLFormRegexValidator formRegexValidatorWithMsg:@"greater than 50 and less than 100" regex:@"^([5-9][0-9]|100)$"]];
     [section addFormRow:row];
     
@@ -118,22 +120,23 @@ NSString * const kValidationInteger = @"kInteger";
     NSArray * array = [self formValidationErrors];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         XLFormValidationStatus * validationStatus = [[obj userInfo] objectForKey:XLValidationStatusErrorKey];
-        if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationName]){
+        if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationName]) {
+            // 姓名
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
             cell.backgroundColor = [UIColor orangeColor];
             [UIView animateWithDuration:0.3 animations:^{
                 cell.backgroundColor = [UIColor whiteColor];
             }];
-        }
-        else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationEmail]){
+        } else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationEmail]) {
+            // 邮箱
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
             [self animateCell:cell];
-        }
-        else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationPassword]){
+        } else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationPassword]) {
+            // 密码
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
             [self animateCell:cell];
-        }
-        else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationInteger]){
+        } else if ([validationStatus.rowDescriptor.tag isEqualToString:kValidationInteger]) {
+            // 整数
             UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[self.form indexPathOfFormRow:validationStatus.rowDescriptor]];
             [self animateCell:cell];
         }
@@ -142,6 +145,13 @@ NSString * const kValidationInteger = @"kInteger";
 
 
 #pragma mark - Helper
+
+- (void)animateBackgroundColorCell:(UITableViewCell *)cell {
+    cell.backgroundColor = [UIColor orangeColor];
+    [UIView animateWithDuration:0.3 animations:^{
+        cell.backgroundColor = [UIColor whiteColor];
+    }];
+}
 
 -(void)animateCell:(UITableViewCell *)cell
 {

@@ -44,6 +44,7 @@ NSString *const kSelectorUserPopover = @"kSelectorUserPopover";
     return NO;
 }
 
+// 显示转换值
 - (id)transformedValue:(id)value
 {
     if (!value) return nil;

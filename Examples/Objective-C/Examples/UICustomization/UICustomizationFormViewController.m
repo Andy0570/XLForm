@@ -25,6 +25,7 @@
 
 #import "XLForm.h"
 #import "UICustomizationFormViewController.h"
+#import <JKCategories/UIView+JKToast.h>
 
 @implementation UICustomizationFormViewController
 
@@ -43,17 +44,17 @@
         section = [XLFormSectionDescriptor formSection];
         [form addFormSection:section];
         
-        // Name
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Name" rowType:XLFormRowDescriptorTypeText title:@"Name"];
-        // change the background color
+        // 姓名
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Name" rowType:XLFormRowDescriptorTypeText title:@"姓名"];
+        // textLabel 背景色
         [row.cellConfigAtConfigure setObject:[UIColor greenColor] forKey:@"backgroundColor"];
-        // font
+        // textLabel 字体
         [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:30] forKey:@"textLabel.font"];
-        // background color
+        // textField 背景色
         [row.cellConfig setObject:[UIColor grayColor] forKey:@"textField.backgroundColor"];
-        // font
+        // textField 字体
         [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:25] forKey:@"textField.font"];
-        // alignment
+        // textField 对齐方式：右对齐
         [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
         [section addFormRow:row];
         
@@ -62,11 +63,41 @@
         section = [XLFormSectionDescriptor formSection];
         [form addFormSection:section];
         
-        //Button
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Button" rowType:XLFormRowDescriptorTypeButton title:@"Button"];
+        // 按钮
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Button" rowType:XLFormRowDescriptorTypeButton title:@"按钮"];
+        // 按钮背景色
         [row.cellConfigAtConfigure setObject:[UIColor purpleColor] forKey:@"backgroundColor"];
+        // 按钮文字颜色
         [row.cellConfig setObject:[UIColor whiteColor] forKey:@"textLabel.color"];
+        // 按钮字体
         [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:40] forKey:@"textLabel.font"];
+        [section addFormRow:row];
+        
+        
+        // Section
+        section = [XLFormSectionDescriptor formSection];
+        [form addFormSection:section];
+        
+        // 确定按钮
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Button2" rowType:XLFormRowDescriptorTypeButton title:@"提交"];
+        // 蓝色背景
+        UIColor *backgroundColor = [UIColor colorWithRed:16/255.0 green:142/255.0 blue:233/255.0 alpha:1.0];
+        [row.cellConfigAtConfigure setObject:backgroundColor forKey:@"backgroundColor"];
+        // 按钮文字颜色：白色
+        [row.cellConfig setObject:UIColor.whiteColor forKey:@"textLabel.color"];
+        [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:18] forKey:@"textLabel.font"];
+        row.action.formSelector = @selector(didTouchButton:);
+        [section addFormRow:row];
+        
+        
+        // Section
+        section = [XLFormSectionDescriptor formSection];
+        [form addFormSection:section];
+        
+        // 退出登录
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"lagoutButtono" rowType:XLFormRowDescriptorTypeButton title:@"退出登录"];
+        [row.cellConfigAtConfigure setObject:UIColor.systemRedColor forKey:@"textLabel.color"];
+        row.action.formSelector = @selector(didTouchButton:);
         [section addFormRow:row];
         
         self.form = form;
@@ -75,16 +106,26 @@
 }
 
 
+// 修改cell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // change cell height of a particular cell
-    if ([[self.form formRowAtIndex:indexPath].tag isEqualToString:@"Name"]){
+    if ([[self.form formRowAtIndex:indexPath].tag isEqualToString:@"Name"]) {
         return 60.0;
-    }
-    else if ([[self.form formRowAtIndex:indexPath].tag isEqualToString:@"Button"]){
+    } else if ([[self.form formRowAtIndex:indexPath].tag isEqualToString:@"Button"]) {
         return 100.0;
+    } else if ([[self.form formRowAtIndex:indexPath].tag isEqualToString:@"Button2"]) {
+        return 55.0f;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+#pragma mark - IBActions
+
+-(void)didTouchButton:(XLFormRowDescriptor *)sender {
+    [self deselectFormRow:sender];
+    
+    [self.navigationController.view jk_makeToast:@"Tapped Button"];
 }
 
 @end

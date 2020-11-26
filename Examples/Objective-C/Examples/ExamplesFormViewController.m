@@ -86,11 +86,13 @@ NSString * const kFormatters = @"Formatters";
     
     form = [XLFormDescriptor formDescriptor];
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Real examples"];
+    // ---------------------------------------------------------------
+    // 第一组
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"真实示例"];
     [form addFormSection:section];
     
     // NativeEventFormViewController
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"realExamples" rowType:XLFormRowDescriptorTypeButton title:@"iOS Calendar Event Form"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"realExamples" rowType:XLFormRowDescriptorTypeButton title:@"iOS 日历表单"];
     row.action.formSegueIdentifier = @"NativeEventNavigationViewControllerSegue";
     [section addFormRow:row];
     
@@ -125,6 +127,8 @@ NSString * const kFormatters = @"Formatters";
     row.action.formSegueIdentifier = @"OthersFormViewControllerSegue";
     [section addFormRow:row];
     
+    // ---------------------------------------------------------------
+    // 第三组
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Multivalued example"];
     [form addFormSection:section];
     
@@ -146,7 +150,9 @@ NSString * const kFormatters = @"Formatters";
     [section addFormRow:row];
     
 
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"UI Customization"];
+    // ---------------------------------------------------------------
+    // 第四组
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"定制UI样式"];
     [form addFormSection:section];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultivalued rowType:XLFormRowDescriptorTypeButton title:@"UI Customization"];
@@ -154,13 +160,17 @@ NSString * const kFormatters = @"Formatters";
     [section addFormRow:row];
     
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Custom Rows"];
+    // ---------------------------------------------------------------
+    // 第五组
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"自定义 Rows"];
     [form addFormSection:section];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kMultivalued rowType:XLFormRowDescriptorTypeButton title:@"Custom Rows"];
     row.action.viewControllerClass = [CustomRowsViewController class];
     [section addFormRow:row];
     
+    // ---------------------------------------------------------------
+    // 第六组
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Accessory View"];
     [form addFormSection:section];
     
@@ -168,7 +178,8 @@ NSString * const kFormatters = @"Formatters";
     row.action.viewControllerClass = [AccessoryViewFormViewController class];
     [section addFormRow:row];
 
-    
+    // ---------------------------------------------------------------
+    // 第七组
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Validation Examples"];
     [form addFormSection:section];
     
@@ -176,7 +187,9 @@ NSString * const kFormatters = @"Formatters";
     row.action.formSegueIdentifier = @"ValidationExamplesFormViewControllerSegue";
     [section addFormRow:row];
     
-    section = [XLFormSectionDescriptor formSectionWithTitle:@"Using Predicates"];
+    // ---------------------------------------------------------------
+    // 第七组
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"使用谓词"];
     [form addFormSection:section];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kPredicates rowType:XLFormRowDescriptorTypeButton title:@"Very basic predicates"];

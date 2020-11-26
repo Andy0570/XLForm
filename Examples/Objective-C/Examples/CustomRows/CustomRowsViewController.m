@@ -58,6 +58,7 @@ static NSString * const kCustomRowText = @"kCustomText";
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Ratings"];
     [form addFormSection:section];
     
+    // MARK: 评分⭐️⭐️⭐️⭐️⭐️
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomRowFirstRatingTag rowType:XLFormRowDescriptorTypeRate title:@"First Rating"];
     row.value = @(3);
     [section addFormRow:row];
@@ -70,6 +71,7 @@ static NSString * const kCustomRowText = @"kCustomText";
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Float Labeled Text Field"];
     [form addFormSection:section];
     
+    // MARK: JVFloatLabeledTextField - 浮动文本框
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomRowFloatLabeledTextFieldTag rowType:XLFormRowDescriptorTypeFloatLabeledTextField title:@"Title"];
     [section addFormRow:row];
     
@@ -83,7 +85,7 @@ static NSString * const kCustomRowText = @"kCustomText";
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Weekdays"];
     [form addFormSection:section];
     
-    // WeekDays
+    // MARK: 星期
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomRowWeekdays rowType:XLFormRowDescriptorTypeWeekDays];
     row.value =  @{
                    kSunday: @(NO),
@@ -100,7 +102,7 @@ static NSString * const kCustomRowText = @"kCustomText";
     section = [XLFormSectionDescriptor formSectionWithTitle:@"Custom Inline"];
     [form addFormSection:section];
     
-    // Inline segmented
+    // MARK: 内嵌 segmented 分段组件
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomInline rowType:XLFormRowDescriptorTypeSegmentedInline];
     row.title = @"You support...";
     row.selectorOptions = @[@"Uruguay", @"Brazil", @"Argentina", @"Chile"];
@@ -110,6 +112,7 @@ static NSString * const kCustomRowText = @"kCustomText";
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
+    // MARK: 自定义 cell
     XLFormRowDescriptor *customRowDescriptor = [XLFormRowDescriptor formRowDescriptorWithTag:kCustomRowText rowType:@"XLFormRowDescriptorTypeCustom"];
     // Must set custom cell or add custom cell to cellClassesForRowDescriptorTypes dictionary before XLFormViewController loaded
     customRowDescriptor.cellClass = [XLFormCustomCell class];

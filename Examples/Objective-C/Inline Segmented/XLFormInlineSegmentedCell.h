@@ -11,12 +11,11 @@
 extern NSString * const XLFormRowDescriptorTypeSegmentedInline;
 extern NSString * const XLFormRowDescriptorTypeSegmentedControl;
 
+/// 内嵌分段cell
 @interface XLFormInlineSegmentedCell : XLFormBaseCell
-
 @end
 
-
+/// 分段cell选择控制器
 @interface XLFormInlineSegmentedControl : XLFormBaseCell<XLFormInlineRowDescriptorCell>
-
 @property (strong, nonatomic) UISegmentedControl* segmentedControl;
 @end

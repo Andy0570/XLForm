@@ -70,33 +70,36 @@
     XLFormRowDescriptor * row;
     
     form = [XLFormDescriptor formDescriptorWithTitle:@"Add Event"];
+    
+    // 第一段
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
-    // Title
+    // 标题
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
     [row.cellConfigAtConfigure setObject:@"Title" forKey:@"textField.placeholder"];
     row.required = YES;
     [section addFormRow:row];
     
-    // Location
+    // 位置
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"location" rowType:XLFormRowDescriptorTypeText];
     [row.cellConfigAtConfigure setObject:@"Location" forKey:@"textField.placeholder"];
     [section addFormRow:row];
     
+    // 第二段
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
     
-    // All-day
+    // All-day，Switch 开关
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"all-day" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"All-day"];
     [section addFormRow:row];
     
-    // Starts
+    // 开始时间
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"starts" rowType:XLFormRowDescriptorTypeDateTimeInline title:@"Starts"];
     row.value = [NSDate dateWithTimeIntervalSinceNow:60*60*24];
     [section addFormRow:row];
     
-    // Ends
+    // 结束时间
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"ends" rowType:XLFormRowDescriptorTypeDateTimeInline title:@"Ends"];
     row.value = [NSDate dateWithTimeIntervalSinceNow:60*60*25];
     [section addFormRow:row];
@@ -104,17 +107,17 @@
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
 
-    // Repeat
+    // 重复次数，选择器，通过 push 一个视图控制器实现选择
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"repeat" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Repeat"];
     row.value = [XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Never"];
     row.selectorTitle = @"Repeat";
+    // 该数组中存放的 item 表示：选择器的待选项
     row.selectorOptions = @[[XLFormOptionsObject formOptionsObjectWithValue:@(0) displayText:@"Never"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(1) displayText:@"Every Day"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(2) displayText:@"Every Week"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(3) displayText:@"Every 2 Weeks"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(4) displayText:@"Every Month"],
-                            [XLFormOptionsObject formOptionsObjectWithValue:@(5) displayText:@"Every Year"],
-                            ];
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(5) displayText:@"Every Year"]];
     [section addFormRow:row];
 
 
@@ -134,8 +137,7 @@
                             [XLFormOptionsObject formOptionsObjectWithValue:@(5) displayText:@"1 hour before"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(6) displayText:@"2 hours before"],
                             [XLFormOptionsObject formOptionsObjectWithValue:@(7) displayText:@"1 day before"],
-                            [XLFormOptionsObject formOptionsObjectWithValue:@(8) displayText:@"2 days before"],
-                            ];
+                            [XLFormOptionsObject formOptionsObjectWithValue:@(8) displayText:@"2 days before"]];
     [section addFormRow:row];
 
 
@@ -153,16 +155,15 @@
     section = [XLFormSectionDescriptor formSection];
     [form addFormSection:section];
 
-    // URL
+    // URL - UITextField 示例
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"url" rowType:XLFormRowDescriptorTypeURL];
     [row.cellConfigAtConfigure setObject:@"URL" forKey:@"textField.placeholder"];
     [section addFormRow:row];
     
-    // Notes
+    // 备注 - UITextView 示例
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"notes" rowType:XLFormRowDescriptorTypeTextView];
     [row.cellConfigAtConfigure setObject:@"Notes" forKey:@"textView.placeholder"];
     [section addFormRow:row];
-    
     
     self.form = form;
 }
@@ -177,12 +178,15 @@
 
 #pragma mark - XLFormDescriptorDelegate
 
+// 表单项中的值被改变后调用
 -(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)rowDescriptor oldValue:(id)oldValue newValue:(id)newValue
 {
     [super formRowDescriptorValueHasChanged:rowDescriptor oldValue:oldValue newValue:newValue];
     if ([rowDescriptor.tag isEqualToString:@"alert"]){
+        // MARK: 1.如果 alert 设置了某个时间，那就在下方添加一行
         if ([[rowDescriptor.value valueData] isEqualToNumber:@(0)] == NO && [[oldValue valueData] isEqualToNumber:@(0)]){
         
+            // 在下方添加相同样式的 Row
             XLFormRowDescriptor * newRow = [rowDescriptor copy];
             newRow.tag = @"secondAlert";
             newRow.title = @"Second Alert";
@@ -193,6 +197,7 @@
         }
     }
     else if ([rowDescriptor.tag isEqualToString:@"all-day"]){
+        // MARK: 2.all-day 行被设置，修改下面两行表单的类型
         XLFormRowDescriptor * startDateDescriptor = [self.form formRowWithTag:@"starts"];
         XLFormRowDescriptor * endDateDescriptor = [self.form formRowWithTag:@"ends"];
         XLFormDateCell * dateStartCell = (XLFormDateCell *)[[self.form formRowWithTag:@"starts"] cellForFormController:self];
@@ -213,26 +218,34 @@
         [self updateFormRow:endDateDescriptor];
     }
     else if ([rowDescriptor.tag isEqualToString:@"starts"]){
+        // MARK: 3.起始时间被修改
         XLFormRowDescriptor * startDateDescriptor = [self.form formRowWithTag:@"starts"];
         XLFormRowDescriptor * endDateDescriptor = [self.form formRowWithTag:@"ends"];
+        
+        // 有序降序
         if ([startDateDescriptor.value compare:endDateDescriptor.value] == NSOrderedDescending) {
-            // startDateDescriptor is later than endDateDescriptor
+            // 如果结束时间早于开始时间，修改结束时间
             endDateDescriptor.value =  [[NSDate alloc] initWithTimeInterval:(60*60*24) sinceDate:startDateDescriptor.value];
+            // 移除结束时间文本上的删除线
             [endDateDescriptor.cellConfig removeObjectForKey:@"detailTextLabel.attributedText"];
+            // 更新结束行 UI
             [self updateFormRow:endDateDescriptor];
         }
     }
     else if ([rowDescriptor.tag isEqualToString:@"ends"]){
+        // MARK: 3.结束时间被修改
         XLFormRowDescriptor * startDateDescriptor = [self.form formRowWithTag:@"starts"];
         XLFormRowDescriptor * endDateDescriptor = [self.form formRowWithTag:@"ends"];
         XLFormDateCell * dateEndCell = (XLFormDateCell *)[endDateDescriptor cellForFormController:self];
         if ([startDateDescriptor.value compare:endDateDescriptor.value] == NSOrderedDescending) {
             // startDateDescriptor is later than endDateDescriptor
-            [dateEndCell update]; // force detailTextLabel update
+            [dateEndCell update]; // // 强制 detailTextLabel 更新
+            // 开始时间晚于结束时间，就会在结束时间上画删除线
             NSDictionary *strikeThroughAttribute = [NSDictionary dictionaryWithObject:@1
                                                                                forKey:NSStrikethroughStyleAttributeName];
             NSAttributedString* strikeThroughText = [[NSAttributedString alloc] initWithString:dateEndCell.detailTextLabel.text attributes:strikeThroughAttribute];
             [endDateDescriptor.cellConfig setObject:strikeThroughText forKey:@"detailTextLabel.attributedText"];
+            // 更新结束行 UI
             [self updateFormRow:endDateDescriptor];
         }
         else{
@@ -247,7 +260,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 -(void)savePressed:(UIBarButtonItem * __unused)button
 {
     NSArray * validationErrors = [self formValidationErrors];
@@ -257,7 +269,5 @@
     }
     [self.tableView endEditing:YES];
 }
-
-
 
 @end
