@@ -78,14 +78,15 @@ static HQLProvinceManager *_sharedManager = nil;
 // 显示在页面上的是城市中文名
 // 如果对象遵守 XLFormOptionObject 协议，XLForm 从 formDisplayText 方法中得到要显示的值。
 -(nonnull NSString *)formDisplayText {
-    return [NSString stringWithFormat:@"%@，%@",_currentProvince.name, _currentCity.name];
+//    return [NSString stringWithFormat:@"%@，%@",_currentProvince.name, _currentCity.name];
+    return _currentCity.name ? : @"请选择所在城市";
 }
 
 // 提交时传的参数是城市代码
 -(nonnull id)formValue {
     return @{
-        @"citycode":_currentCity.code,
-        @"cityname":_currentCity.name
+        @"citycode":(_currentCity.code ? : [NSNull null]),
+        @"cityname":(_currentCity.name ? : [NSNull null])
     };
 }
 

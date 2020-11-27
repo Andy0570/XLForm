@@ -121,6 +121,13 @@ static NSString * const KButton = @"KButton";
     
 }
 
+#pragma mark - UITableViewDelegate
+
+// 统一设置所有 row 的高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
+}
+
 #pragma mark - View life cycle
 
 - (void)viewDidLoad {

@@ -21,7 +21,7 @@ XLForm 提供了一个非常强大的 DSL（Domain Specific Language，领域特
 ##### 让我们看一个使用 XLForm 创建 iOS 日历表单的示例
 
 
-![Screenshot of native Calendar Event Example](Examples/Objective-C/Examples/RealExamples/XLForm.gif)
+![Screenshot of native Calendar Event Example](../Examples/Objective-C/Examples/RealExamples/XLForm.gif)
 
 
 XLForm 可以做什么
@@ -185,7 +185,7 @@ Rows 行
 ---------------------
 #### 输入行
 
-![Screenshot of Input Examples](Examples/Objective-C/Examples/Inputs/XLForm-Inputs.gif)
+![Screenshot of Input Examples](../Examples/Objective-C/Examples/Inputs/XLForm-Inputs.gif)
 
 
 
@@ -451,7 +451,7 @@ static NSString *const XLFormRowDescriptorTypeBooleanSwitch = @"booleanSwitch";
 
 XLForms 支持使用 `UIStepper` 设置数值：
 
-![Screenshot of native Calendar Event Example](Examples/Objective-C/Examples/Others/XLForm-stepCounter.gif)
+![Screenshot of native Calendar Event Example](../Examples/Objective-C/Examples/Others/XLForm-stepCounter.gif)
 
 
 ```objc
@@ -507,7 +507,7 @@ static NSString *const XLFormRowDescriptorTypeSlider = @"slider";
 
 多值 `XLFormSectionDescriptor` 最有趣的部分是它支持所有被显示在  [*Rows*](#Rows-行 "Rows") 行上的类型，包括自定义行类型。
 
-![Screenshot of Multivalued Section Example](Examples/Objective-C/Examples/MultiValuedSections/XLForm-MultiValuedSections.gif)
+![Screenshot of Multivalued Section Example](../Examples/Objective-C/Examples/MultiValuedSections/XLForm-MultiValuedSections.gif)
 
 
 ### 如何创建 multivalued section
@@ -639,7 +639,6 @@ row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:XLFormRowDescrip
 // 当 cell 放弃第一响应者时被调用
 -(void)unhighlight;
 
-
 @end
 ```
 
@@ -710,7 +709,7 @@ XLForm 使用属于选择器行的 `XLFormRowDescriptor` 实例来设置 `rowDes
 #### 其它示例
 
 
-![Screenshot of Dynamic Custom Selector](Examples/Objective-C/Examples/Selectors/DynamicSelector/XLForm-dynamic-custom-selector.gif)
+![Screenshot of Dynamic Custom Selector](../Examples/Objective-C/Examples/Selectors/DynamicSelector/XLForm-dynamic-custom-selector.gif)
 
 
 ```objc
@@ -787,7 +786,7 @@ XLForm allows you to define dependencies between rows so that if the value of on
 So you can make a row invisible and visible again based on the values of other rows. The same happens with sections.
 Take a look at the following example:
 
-![Screenshot of hiding rows](Examples/Objective-C/Examples/PredicateExamples/XLFormPredicatesBasic.gif)
+![Screenshot of hiding rows](../Examples/Objective-C/Examples/Predicate - 谓词/XLFormPredicatesBasic.gif)
 
 Of course, you could also do this manually by observing the value of some rows and deleting and adding rows accordingly, but that would be a lot of work which is already done.
 
@@ -816,7 +815,7 @@ To get the evaluated boolean value the `isHidden` method should be called. It wi
 
 Here is another example, this time a bit more complex:
 
-![Screenshot of hiding rows](Examples/Objective-C/Examples/PredicateExamples/XLFormPredicates.gif)
+![Screenshot of hiding rows](../Examples/Objective-C/Examples/Predicate - 谓词/XLFormPredicates.gif)
 
 
 禁用 row 行 (set to read-only mode)

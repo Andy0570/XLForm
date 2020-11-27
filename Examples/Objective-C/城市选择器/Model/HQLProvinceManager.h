@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class HQLCity;
 @class HQLProvince;
 
-
 @interface HQLProvinceManager : NSObject <XLFormOptionObject>
 
 @property (nonatomic, readonly, copy) NSArray<HQLProvince *> *provinces;
@@ -22,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite, strong) HQLCity *currentCity;
 
 + (instancetype)sharedManager;
+- (instancetype)init NS_UNAVAILABLE;
 
 - (void)setCurrentCityName:(NSString *)name;
 - (void)setCurrentCityCode:(NSString *)code;
