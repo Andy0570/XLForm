@@ -20,6 +20,11 @@
 		22A4B962256FD11000304088 /* HQLFeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B961256FD11000304088 /* HQLFeeViewController.m */; };
 		22A4B9732570935200304088 /* HQLFormInlineDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9722570935200304088 /* HQLFormInlineDateCell.m */; };
 		22A4B9772570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9762570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m */; };
+		22A4B97C2570AB4600304088 /* HQLPersonalInfoFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B97B2570AB4600304088 /* HQLPersonalInfoFormViewController.m */; };
+		22A4B98A2570AC4500304088 /* HQLGrdmVew.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9832570AC4500304088 /* HQLGrdmVew.m */; };
+		22A4B98B2570AC4500304088 /* HQLVerificationCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9842570AC4500304088 /* HQLVerificationCodeCell.m */; };
+		22A4B98C2570AC4500304088 /* HQLRegisterGrdmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9852570AC4500304088 /* HQLRegisterGrdmCell.m */; };
+		22A4B98D2570AC4500304088 /* HQLRegisterFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9882570AC4500304088 /* HQLRegisterFormViewController.m */; };
 		22BD3011256E4F800097481B /* BasicPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300C256E4F800097481B /* BasicPredicateViewController.m */; };
 		22BD3012256E4F800097481B /* PredicateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300D256E4F800097481B /* PredicateFormViewController.m */; };
 		22BD3014256E4F800097481B /* BlogExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300F256E4F800097481B /* BlogExampleViewController.m */; };
@@ -91,6 +96,16 @@
 		22A4B9722570935200304088 /* HQLFormInlineDateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLFormInlineDateCell.m; sourceTree = "<group>"; };
 		22A4B9752570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLInsuredPaymentDetailQueryFormViewController.h; sourceTree = "<group>"; };
 		22A4B9762570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLInsuredPaymentDetailQueryFormViewController.m; sourceTree = "<group>"; };
+		22A4B97A2570AB4600304088 /* HQLPersonalInfoFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLPersonalInfoFormViewController.h; sourceTree = "<group>"; };
+		22A4B97B2570AB4600304088 /* HQLPersonalInfoFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLPersonalInfoFormViewController.m; sourceTree = "<group>"; };
+		22A4B9812570AC4500304088 /* HQLVerificationCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQLVerificationCodeCell.h; sourceTree = "<group>"; };
+		22A4B9822570AC4500304088 /* HQLRegisterGrdmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQLRegisterGrdmCell.h; sourceTree = "<group>"; };
+		22A4B9832570AC4500304088 /* HQLGrdmVew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQLGrdmVew.m; sourceTree = "<group>"; };
+		22A4B9842570AC4500304088 /* HQLVerificationCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQLVerificationCodeCell.m; sourceTree = "<group>"; };
+		22A4B9852570AC4500304088 /* HQLRegisterGrdmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQLRegisterGrdmCell.m; sourceTree = "<group>"; };
+		22A4B9862570AC4500304088 /* HQLGrdmVew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQLGrdmVew.h; sourceTree = "<group>"; };
+		22A4B9882570AC4500304088 /* HQLRegisterFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQLRegisterFormViewController.m; sourceTree = "<group>"; };
+		22A4B9892570AC4500304088 /* HQLRegisterFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQLRegisterFormViewController.h; sourceTree = "<group>"; };
 		22BD3008256E4F800097481B /* BasicPredicateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPredicateViewController.h; sourceTree = "<group>"; };
 		22BD3009256E4F800097481B /* PredicateFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateFormViewController.h; sourceTree = "<group>"; };
 		22BD300A256E4F800097481B /* BlogExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogExampleViewController.h; sourceTree = "<group>"; };
@@ -201,6 +216,8 @@
 		22A4B924256F9CF700304088 /* 编辑个人资料 */ = {
 			isa = PBXGroup;
 			children = (
+				22A4B97A2570AB4600304088 /* HQLPersonalInfoFormViewController.h */,
+				22A4B97B2570AB4600304088 /* HQLPersonalInfoFormViewController.m */,
 				22A4B925256F9D0E00304088 /* HQLPersonalQRCodeViewController.h */,
 				22A4B927256F9D0F00304088 /* HQLPersonalQRCodeViewController.m */,
 				22A4B926256F9D0E00304088 /* HQLPersonalQRCodeViewController.xib */,
@@ -272,6 +289,8 @@
 		22A4B95F256FD07A00304088 /* 注册表单 */ = {
 			isa = PBXGroup;
 			children = (
+				22A4B9872570AC4500304088 /* Controller */,
+				22A4B9802570AC4500304088 /* View */,
 			);
 			name = "注册表单";
 			sourceTree = "<group>";
@@ -283,6 +302,28 @@
 				22A4B9722570935200304088 /* HQLFormInlineDateCell.m */,
 			);
 			name = "年月选择器";
+			sourceTree = "<group>";
+		};
+		22A4B9802570AC4500304088 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				22A4B9862570AC4500304088 /* HQLGrdmVew.h */,
+				22A4B9832570AC4500304088 /* HQLGrdmVew.m */,
+				22A4B9822570AC4500304088 /* HQLRegisterGrdmCell.h */,
+				22A4B9852570AC4500304088 /* HQLRegisterGrdmCell.m */,
+				22A4B9812570AC4500304088 /* HQLVerificationCodeCell.h */,
+				22A4B9842570AC4500304088 /* HQLVerificationCodeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		22A4B9872570AC4500304088 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				22A4B9892570AC4500304088 /* HQLRegisterFormViewController.h */,
+				22A4B9882570AC4500304088 /* HQLRegisterFormViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		22BD3007256E4F800097481B /* Predicate - 谓词 */ = {
@@ -738,6 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A4B97C2570AB4600304088 /* HQLPersonalInfoFormViewController.m in Sources */,
 				283B59B7195334AF000828CD /* CustomSelectorsFormViewController.m in Sources */,
 				28A766551932F22400D69546 /* UsersTableViewController.m in Sources */,
 				22A4B956256FB8C200304088 /* HQLCityPickerCell.m in Sources */,
@@ -758,7 +800,10 @@
 				3C3B01DA1AB7497D0027CD45 /* XLFormWeekDaysCell.m in Sources */,
 				28F89F2E1AA4EA5600E90218 /* ValidationExamplesFormViewController.m in Sources */,
 				66B6266E1AE0055100007886 /* DateAndTimeValueTrasformer.m in Sources */,
+				22A4B98D2570AC4500304088 /* HQLRegisterFormViewController.m in Sources */,
+				22A4B98A2570AC4500304088 /* HQLGrdmVew.m in Sources */,
 				22BD3011256E4F800097481B /* BasicPredicateViewController.m in Sources */,
+				22A4B98B2570AC4500304088 /* HQLVerificationCodeCell.m in Sources */,
 				3C3B01D51AB741EF0027CD45 /* XLFormRatingCell.m in Sources */,
 				22A4B937256FA36B00304088 /* HQLProvince.m in Sources */,
 				28A7665E1932F61100D69546 /* DynamicSelectorsFormViewController.m in Sources */,
@@ -768,6 +813,7 @@
 				22A4B95A256FB97A00304088 /* HQLCityInlinePickerCell.m in Sources */,
 				3C3B01E21AB7499A0027CD45 /* XLRatingView.m in Sources */,
 				283B59B219532415000828CD /* MapViewController.m in Sources */,
+				22A4B98C2570AC4500304088 /* HQLRegisterGrdmCell.m in Sources */,
 				2843EB4718D4915800F13E2B /* ExamplesFormViewController.m in Sources */,
 				22A4B93B256FA49B00304088 /* HQLProvinceManager.m in Sources */,
 				BF01E9281C21F0BB00BDE045 /* XLFormInlineSegmentedCell.m in Sources */,

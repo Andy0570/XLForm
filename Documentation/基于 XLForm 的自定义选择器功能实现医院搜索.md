@@ -720,7 +720,7 @@ static NSString *const KButton   = @"button";
     // ---------- 提交按钮 ----------
     section = [XLFormSectionDescriptor formSection];
     section4 = section;
-    section.footerTitle = @"异地就医备案业务说明：\n参保人员登录「徐州人社」APP后，可在应用内上传相关材料交由相关业务部门审核，审核通过后，即可完成异地就医备案手续。\n需要提交的材料：\n1.身份证原件正反面照片；\n2.社保卡原件正面照片；\n3.异地房产证照片、异地户口本照片、异地居住证照片（以上材料为原件，提供其中之一）；\n4.在职人员派出单位和异地接受单位证明单位盖章原件；\n5.如有个人账户提现需求，需提供邮政储蓄银行卡照片或邮政储蓄存折照片。\n";
+    section.footerTitle = @"异地就医备案业务说明：\n参保人员登录「****」APP后，可在应用内上传相关材料交由相关业务部门审核，审核通过后，即可完成异地就医备案手续。\n需要提交的材料：\n1.身份证原件正反面照片；\n2.社保卡原件正面照片；\n3.异地房产证照片、异地户口本照片、异地居住证照片（以上材料为原件，提供其中之一）；\n4.在职人员派出单位和异地接受单位证明单位盖章原件；\n5.如有个人账户提现需求，需提供邮政储蓄银行卡照片或邮政储蓄存折照片。\n";
     [form addFormSection:section];
     
     // 新建备案/修改备案
@@ -748,13 +748,7 @@ static NSString *const KButton   = @"button";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self requestServer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Custom Accessors

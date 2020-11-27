@@ -39,6 +39,8 @@
 // 自定义示例
 #import "HQLFeeViewController.h"
 #import "HQLInsuredPaymentDetailQueryFormViewController.h"
+#import "HQLPersonalInfoFormViewController.h"
+#import "HQLRegisterFormViewController.h"
 
 NSString * const kTextFieldAndTextView = @"TextFieldAndTextView";
 NSString * const kSelectors = @"Selectors";
@@ -55,6 +57,8 @@ NSString * const kFormatters = @"Formatters";
 
 NSString * const kFeeCell = @"HQLFeeViewController";
 NSString * const kHQLCBJF = @"HQLCBJF";
+NSString * const kPersonalInfo = @"HQLPersonalInfoFormViewController";
+NSString * const KRegisterForm = @"HQLRegisterFormViewController";
 
 
 @interface ExamplesFormViewController ()
@@ -106,7 +110,7 @@ NSString * const kHQLCBJF = @"HQLCBJF";
     
     // MARK: 支付费用明细
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kFeeCell rowType:XLFormRowDescriptorTypeButton title:@"支付费用明细"];
-    row.action.viewControllerClass = [HQLFeeViewController class];
+    row.action.viewControllerClass = HQLFeeViewController.class;
     [section addFormRow:row];
     
     // MARK: 参保缴费明细查询
@@ -114,7 +118,15 @@ NSString * const kHQLCBJF = @"HQLCBJF";
     row.action.viewControllerClass = HQLInsuredPaymentDetailQueryFormViewController.class;
     [section addFormRow:row];
     
+    // MARK: 编辑个人资料
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kPersonalInfo rowType:XLFormRowDescriptorTypeButton title:@"编辑个人资料"];
+    row.action.viewControllerClass = HQLPersonalInfoFormViewController.class;
+    [section addFormRow:row];
     
+    // MARK: 注册表单
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:KRegisterForm rowType:XLFormRowDescriptorTypeButton title:@"注册表单"];
+    row.action.viewControllerClass = HQLRegisterFormViewController.class;
+    [section addFormRow:row];
     
     section = [XLFormSectionDescriptor formSectionWithTitle:@"This form is actually an example"];
     section.footerTitle = @"ExamplesFormViewController.h, Select an option to view another example";
