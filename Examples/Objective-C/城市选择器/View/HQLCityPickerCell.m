@@ -218,6 +218,7 @@ NSString *const HQLFormRowDescriptorTypeCityPickerView = @"HQLCityPickerCell";
     return [self.rowDescriptor.value displayText];
 }
 
+// 当 control 成为第一响应者时的输入视图
 - (UIView *)inputView {
     if ([self.rowDescriptor.rowType isEqualToString:HQLFormRowDescriptorTypeCityPickerView]) {
         return self.pickerView;

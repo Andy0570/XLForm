@@ -36,6 +36,10 @@
 #import "PredicateFormViewController.h"
 #import "FormattersViewController.h"
 
+// 自定义示例
+#import "HQLFeeViewController.h"
+#import "HQLInsuredPaymentDetailQueryFormViewController.h"
+
 NSString * const kTextFieldAndTextView = @"TextFieldAndTextView";
 NSString * const kSelectors = @"Selectors";
 NSString * const kOthes = @"Others";
@@ -48,6 +52,10 @@ NSString * const kMultivaluedOnlyInsert = @"MultivaluedOnlyInsert";
 NSString * const kMultivaluedOnlyDelete = @"MultivaluedOnlyDelete";
 NSString * const kValidations= @"Validations";
 NSString * const kFormatters = @"Formatters";
+
+NSString * const kFeeCell = @"HQLFeeViewController";
+NSString * const kHQLCBJF = @"HQLCBJF";
+
 
 @interface ExamplesFormViewController ()
 
@@ -95,6 +103,17 @@ NSString * const kFormatters = @"Formatters";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"realExamples" rowType:XLFormRowDescriptorTypeButton title:@"iOS 日历表单"];
     row.action.formSegueIdentifier = @"NativeEventNavigationViewControllerSegue";
     [section addFormRow:row];
+    
+    // MARK: 支付费用明细
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kFeeCell rowType:XLFormRowDescriptorTypeButton title:@"支付费用明细"];
+    row.action.viewControllerClass = [HQLFeeViewController class];
+    [section addFormRow:row];
+    
+    // MARK: 参保缴费明细查询
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kHQLCBJF rowType:XLFormRowDescriptorTypeButton title:@"参保缴费明细查询"];
+    row.action.viewControllerClass = HQLInsuredPaymentDetailQueryFormViewController.class;
+    [section addFormRow:row];
+    
     
     
     section = [XLFormSectionDescriptor formSectionWithTitle:@"This form is actually an example"];

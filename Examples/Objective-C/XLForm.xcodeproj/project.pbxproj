@@ -17,6 +17,9 @@
 		22A4B946256FA8C300304088 /* HQLProvincePickViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A4B944256FA8C300304088 /* HQLProvincePickViewViewController.xib */; };
 		22A4B956256FB8C200304088 /* HQLCityPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B955256FB8C200304088 /* HQLCityPickerCell.m */; };
 		22A4B95A256FB97A00304088 /* HQLCityInlinePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B959256FB97A00304088 /* HQLCityInlinePickerCell.m */; };
+		22A4B962256FD11000304088 /* HQLFeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B961256FD11000304088 /* HQLFeeViewController.m */; };
+		22A4B9732570935200304088 /* HQLFormInlineDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9722570935200304088 /* HQLFormInlineDateCell.m */; };
+		22A4B9772570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B9762570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m */; };
 		22BD3011256E4F800097481B /* BasicPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300C256E4F800097481B /* BasicPredicateViewController.m */; };
 		22BD3012256E4F800097481B /* PredicateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300D256E4F800097481B /* PredicateFormViewController.m */; };
 		22BD3014256E4F800097481B /* BlogExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300F256E4F800097481B /* BlogExampleViewController.m */; };
@@ -82,6 +85,12 @@
 		22A4B955256FB8C200304088 /* HQLCityPickerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLCityPickerCell.m; sourceTree = "<group>"; };
 		22A4B958256FB97A00304088 /* HQLCityInlinePickerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLCityInlinePickerCell.h; sourceTree = "<group>"; };
 		22A4B959256FB97A00304088 /* HQLCityInlinePickerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLCityInlinePickerCell.m; sourceTree = "<group>"; };
+		22A4B960256FD11000304088 /* HQLFeeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLFeeViewController.h; sourceTree = "<group>"; };
+		22A4B961256FD11000304088 /* HQLFeeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLFeeViewController.m; sourceTree = "<group>"; };
+		22A4B9712570935200304088 /* HQLFormInlineDateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLFormInlineDateCell.h; sourceTree = "<group>"; };
+		22A4B9722570935200304088 /* HQLFormInlineDateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLFormInlineDateCell.m; sourceTree = "<group>"; };
+		22A4B9752570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLInsuredPaymentDetailQueryFormViewController.h; sourceTree = "<group>"; };
+		22A4B9762570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLInsuredPaymentDetailQueryFormViewController.m; sourceTree = "<group>"; };
 		22BD3008256E4F800097481B /* BasicPredicateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPredicateViewController.h; sourceTree = "<group>"; };
 		22BD3009256E4F800097481B /* PredicateFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredicateFormViewController.h; sourceTree = "<group>"; };
 		22BD300A256E4F800097481B /* BlogExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogExampleViewController.h; sourceTree = "<group>"; };
@@ -189,14 +198,14 @@
 			path = "城市选择器";
 			sourceTree = "<group>";
 		};
-		22A4B924256F9CF700304088 /* RealExamples - 编辑个人资料 */ = {
+		22A4B924256F9CF700304088 /* 编辑个人资料 */ = {
 			isa = PBXGroup;
 			children = (
 				22A4B925256F9D0E00304088 /* HQLPersonalQRCodeViewController.h */,
 				22A4B927256F9D0F00304088 /* HQLPersonalQRCodeViewController.m */,
 				22A4B926256F9D0E00304088 /* HQLPersonalQRCodeViewController.xib */,
 			);
-			path = "RealExamples - 编辑个人资料";
+			path = "编辑个人资料";
 			sourceTree = "<group>";
 		};
 		22A4B92B256FA1F300304088 /* Store */ = {
@@ -239,6 +248,41 @@
 				22A4B959256FB97A00304088 /* HQLCityInlinePickerCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		22A4B95D256FD06100304088 /* 参保缴费明细查询 */ = {
+			isa = PBXGroup;
+			children = (
+				22A4B9752570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.h */,
+				22A4B9762570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m */,
+				22A4B9662570900400304088 /* 年月选择器 */,
+			);
+			name = "参保缴费明细查询";
+			sourceTree = "<group>";
+		};
+		22A4B95E256FD06E00304088 /* 支付费用明细列表 */ = {
+			isa = PBXGroup;
+			children = (
+				22A4B960256FD11000304088 /* HQLFeeViewController.h */,
+				22A4B961256FD11000304088 /* HQLFeeViewController.m */,
+			);
+			name = "支付费用明细列表";
+			sourceTree = "<group>";
+		};
+		22A4B95F256FD07A00304088 /* 注册表单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "注册表单";
+			sourceTree = "<group>";
+		};
+		22A4B9662570900400304088 /* 年月选择器 */ = {
+			isa = PBXGroup;
+			children = (
+				22A4B9712570935200304088 /* HQLFormInlineDateCell.h */,
+				22A4B9722570935200304088 /* HQLFormInlineDateCell.m */,
+			);
+			name = "年月选择器";
 			sourceTree = "<group>";
 		};
 		22BD3007256E4F800097481B /* Predicate - 谓词 */ = {
@@ -410,13 +454,16 @@
 		2850C62B18D0F92F002B7D0A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				22A4B95E256FD06E00304088 /* 支付费用明细列表 */,
+				22A4B95D256FD06100304088 /* 参保缴费明细查询 */,
+				22A4B95F256FD07A00304088 /* 注册表单 */,
+				22A4B924256F9CF700304088 /* 编辑个人资料 */,
 				2850C60A18D0F706002B7D0A /* AppDelegate.h */,
 				28A76624193251E500D69546 /* AppDelegate.m */,
 				2843EB4518D4915800F13E2B /* ExamplesFormViewController.h */,
 				2843EB4618D4915800F13E2B /* ExamplesFormViewController.m */,
 				28A8083C190D903D009D77F8 /* StoryboardExample */,
 				28468E9218EA52CA00DBB015 /* RealExamples - 日历 */,
-				22A4B924256F9CF700304088 /* RealExamples - 编辑个人资料 */,
 				282C5EEF18D33C1800A5D47C /* Inputs - 输入 */,
 				2843EB4818D496CB00F13E2B /* Selectors - 选择器 */,
 				2843EB5318D4F77F00F13E2B /* Dates - 日期 */,
@@ -698,6 +745,8 @@
 				3CDAFC7A1AB0AFA4000F75B6 /* CustomRowsViewController.m in Sources */,
 				DEA6EF911B57D6CC000F4893 /* HTTPSessionManager.m in Sources */,
 				282EB27C1AB5FF33004A736F /* AccessoryViewFormViewController.m in Sources */,
+				22A4B962256FD11000304088 /* HQLFeeViewController.m in Sources */,
+				22A4B9732570935200304088 /* HQLFormInlineDateCell.m in Sources */,
 				22A4B929256F9D0F00304088 /* HQLPersonalQRCodeViewController.m in Sources */,
 				2850C60818D0F706002B7D0A /* main.m in Sources */,
 				22BD3012256E4F800097481B /* PredicateFormViewController.m in Sources */,
@@ -724,6 +773,7 @@
 				BF01E9281C21F0BB00BDE045 /* XLFormInlineSegmentedCell.m in Sources */,
 				DEB8235C1AD5529A00AF9FE2 /* FormattersViewController.m in Sources */,
 				22A4B945256FA8C300304088 /* HQLProvincePickViewViewController.m in Sources */,
+				22A4B9772570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m in Sources */,
 				2843EB5218D4CFC700F13E2B /* OthersFormViewController.m in Sources */,
 				22A4B930256FA21A00304088 /* HQLPropertyListStore.m in Sources */,
 				2843EB4B18D496F600F13E2B /* SelectorsFormViewController.m in Sources */,
