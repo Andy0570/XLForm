@@ -41,6 +41,9 @@
 #import "HQLInsuredPaymentDetailQueryFormViewController.h"
 #import "HQLPersonalInfoFormViewController.h"
 #import "HQLRegisterFormViewController.h"
+#import "HQLMessageSettingFormViewController.h"
+#import "HQLGeneralSettingFormViewController.h"
+#import "IMUserInfoFormViewController.h"
 
 NSString * const kTextFieldAndTextView = @"TextFieldAndTextView";
 NSString * const kSelectors = @"Selectors";
@@ -59,14 +62,15 @@ NSString * const kFeeCell = @"HQLFeeViewController";
 NSString * const kHQLCBJF = @"HQLCBJF";
 NSString * const kPersonalInfo = @"HQLPersonalInfoFormViewController";
 NSString * const KRegisterForm = @"HQLRegisterFormViewController";
-
+NSString * const kMessageSetting = @"HQLMessageSettingFormViewController";
+NSString * const kGeneralSetting = @"HQLGeneralSettingFormViewController";
+NSString * const kUserInfo = @"IMUserInfoFormViewController";
 
 @interface ExamplesFormViewController ()
 
 @end
 
 @implementation ExamplesFormViewController
-
 
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,6 +130,21 @@ NSString * const KRegisterForm = @"HQLRegisterFormViewController";
     // MARK: 注册表单
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KRegisterForm rowType:XLFormRowDescriptorTypeButton title:@"注册表单"];
     row.action.viewControllerClass = HQLRegisterFormViewController.class;
+    [section addFormRow:row];
+    
+    // MARK: 消息设置
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kMessageSetting rowType:XLFormRowDescriptorTypeButton title:@"消息设置"];
+    row.action.viewControllerClass = [HQLMessageSettingFormViewController class];
+    [section addFormRow:row];
+    
+    // MARK: 通用设置
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kMessageSetting rowType:XLFormRowDescriptorTypeButton title:@"通用设置"];
+    row.action.viewControllerClass = [HQLGeneralSettingFormViewController class];
+    [section addFormRow:row];
+    
+    // MARK: 用户详情
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:kUserInfo rowType:XLFormRowDescriptorTypeButton title:@"用户详情"];
+    row.action.viewControllerClass = [IMUserInfoFormViewController class];
     [section addFormRow:row];
     
     section = [XLFormSectionDescriptor formSectionWithTitle:@"This form is actually an example"];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		227CD17B25B809910030E9D3 /* HQLMessageSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 227CD17A25B809910030E9D3 /* HQLMessageSettingFormViewController.m */; };
+		227CD18025B80B690030E9D3 /* HQLGeneralSettingFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 227CD17F25B80B690030E9D3 /* HQLGeneralSettingFormViewController.m */; };
 		22A4B928256F9D0F00304088 /* HQLPersonalQRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A4B926256F9D0E00304088 /* HQLPersonalQRCodeViewController.xib */; };
 		22A4B929256F9D0F00304088 /* HQLPersonalQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B927256F9D0F00304088 /* HQLPersonalQRCodeViewController.m */; };
 		22A4B930256FA21A00304088 /* HQLPropertyListStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A4B92F256FA21A00304088 /* HQLPropertyListStore.m */; };
@@ -29,6 +31,7 @@
 		22BD3012256E4F800097481B /* PredicateFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300D256E4F800097481B /* PredicateFormViewController.m */; };
 		22BD3014256E4F800097481B /* BlogExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BD300F256E4F800097481B /* BlogExampleViewController.m */; };
 		22BD3031256E54780097481B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22BD3030256E54780097481B /* LaunchScreen.storyboard */; };
+		22D05E8F25BAC32D00061802 /* IMUserInfoFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D05E8D25BAC32D00061802 /* IMUserInfoFormViewController.m */; };
 		281E5BE919538F4A006D93C5 /* CLLocationValueTrasformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 281E5BE819538F4A006D93C5 /* CLLocationValueTrasformer.m */; };
 		282EB27C1AB5FF33004A736F /* AccessoryViewFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282EB27B1AB5FF33004A736F /* AccessoryViewFormViewController.m */; };
 		283B59B219532415000828CD /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 283B59B119532415000828CD /* MapViewController.m */; };
@@ -73,6 +76,10 @@
 
 /* Begin PBXFileReference section */
 		19383D268EF8024CB33FCCA4 /* libPods-XLForm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XLForm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		227CD17925B809910030E9D3 /* HQLMessageSettingFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLMessageSettingFormViewController.h; sourceTree = "<group>"; };
+		227CD17A25B809910030E9D3 /* HQLMessageSettingFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLMessageSettingFormViewController.m; sourceTree = "<group>"; };
+		227CD17E25B80B690030E9D3 /* HQLGeneralSettingFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HQLGeneralSettingFormViewController.h; sourceTree = "<group>"; };
+		227CD17F25B80B690030E9D3 /* HQLGeneralSettingFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HQLGeneralSettingFormViewController.m; sourceTree = "<group>"; };
 		22A4B925256F9D0E00304088 /* HQLPersonalQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQLPersonalQRCodeViewController.h; sourceTree = "<group>"; };
 		22A4B926256F9D0E00304088 /* HQLPersonalQRCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HQLPersonalQRCodeViewController.xib; sourceTree = "<group>"; };
 		22A4B927256F9D0F00304088 /* HQLPersonalQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQLPersonalQRCodeViewController.m; sourceTree = "<group>"; };
@@ -113,6 +120,8 @@
 		22BD300D256E4F800097481B /* PredicateFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredicateFormViewController.m; sourceTree = "<group>"; };
 		22BD300F256E4F800097481B /* BlogExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogExampleViewController.m; sourceTree = "<group>"; };
 		22BD3030256E54780097481B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		22D05E8D25BAC32D00061802 /* IMUserInfoFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMUserInfoFormViewController.m; sourceTree = "<group>"; };
+		22D05E8E25BAC32D00061802 /* IMUserInfoFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMUserInfoFormViewController.h; sourceTree = "<group>"; };
 		281E5BE719538F4A006D93C5 /* CLLocationValueTrasformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLLocationValueTrasformer.h; path = Examples/Selectors/CustomSelectors/XLFormRowViewController/CLLocationValueTrasformer.h; sourceTree = "<group>"; };
 		281E5BE819538F4A006D93C5 /* CLLocationValueTrasformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLLocationValueTrasformer.m; path = Examples/Selectors/CustomSelectors/XLFormRowViewController/CLLocationValueTrasformer.m; sourceTree = "<group>"; };
 		282EB27A1AB5FF33004A736F /* AccessoryViewFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryViewFormViewController.h; path = Examples/AccessoryViews/AccessoryViewFormViewController.h; sourceTree = "<group>"; };
@@ -202,6 +211,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		227CD17725B8096E0030E9D3 /* 消息设置 */ = {
+			isa = PBXGroup;
+			children = (
+				227CD17925B809910030E9D3 /* HQLMessageSettingFormViewController.h */,
+				227CD17A25B809910030E9D3 /* HQLMessageSettingFormViewController.m */,
+			);
+			name = "消息设置";
+			sourceTree = "<group>";
+		};
+		227CD17825B809780030E9D3 /* 通用设置 */ = {
+			isa = PBXGroup;
+			children = (
+				227CD17E25B80B690030E9D3 /* HQLGeneralSettingFormViewController.h */,
+				227CD17F25B80B690030E9D3 /* HQLGeneralSettingFormViewController.m */,
+			);
+			name = "通用设置";
+			sourceTree = "<group>";
+		};
 		22A4B915256F758800304088 /* 城市选择器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +365,15 @@
 			);
 			name = "Predicate - 谓词";
 			path = "Examples/Predicate - 谓词";
+			sourceTree = "<group>";
+		};
+		22D05E8C25BAC31400061802 /* 通讯录用户详情 */ = {
+			isa = PBXGroup;
+			children = (
+				22D05E8E25BAC32D00061802 /* IMUserInfoFormViewController.h */,
+				22D05E8D25BAC32D00061802 /* IMUserInfoFormViewController.m */,
+			);
+			name = "通讯录用户详情";
 			sourceTree = "<group>";
 		};
 		282C5EEF18D33C1800A5D47C /* Inputs - 输入 */ = {
@@ -495,6 +531,9 @@
 		2850C62B18D0F92F002B7D0A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				22D05E8C25BAC31400061802 /* 通讯录用户详情 */,
+				227CD17825B809780030E9D3 /* 通用设置 */,
+				227CD17725B8096E0030E9D3 /* 消息设置 */,
 				22A4B95E256FD06E00304088 /* 支付费用明细列表 */,
 				22A4B95D256FD06100304088 /* 参保缴费明细查询 */,
 				22A4B95F256FD07A00304088 /* 注册表单 */,
@@ -742,11 +781,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XLForm/Pods-XLForm-resources.sh",
 				"${PODS_ROOT}/LBXScan/LBXScan/UI/CodeScan.bundle",
+				"${PODS_ROOT}/RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle",
 				"${PODS_ROOT}/../../../XLForm/XLForm.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CodeScan.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RSKImageCropperStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XLForm.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -781,6 +822,7 @@
 			files = (
 				22A4B97C2570AB4600304088 /* HQLPersonalInfoFormViewController.m in Sources */,
 				283B59B7195334AF000828CD /* CustomSelectorsFormViewController.m in Sources */,
+				22D05E8F25BAC32D00061802 /* IMUserInfoFormViewController.m in Sources */,
 				28A766551932F22400D69546 /* UsersTableViewController.m in Sources */,
 				22A4B956256FB8C200304088 /* HQLCityPickerCell.m in Sources */,
 				22BD3014256E4F800097481B /* BlogExampleViewController.m in Sources */,
@@ -799,6 +841,7 @@
 				28468E9818EC686500DBB015 /* NativeEventFormViewController.m in Sources */,
 				3C3B01DA1AB7497D0027CD45 /* XLFormWeekDaysCell.m in Sources */,
 				28F89F2E1AA4EA5600E90218 /* ValidationExamplesFormViewController.m in Sources */,
+				227CD18025B80B690030E9D3 /* HQLGeneralSettingFormViewController.m in Sources */,
 				66B6266E1AE0055100007886 /* DateAndTimeValueTrasformer.m in Sources */,
 				22A4B98D2570AC4500304088 /* HQLRegisterFormViewController.m in Sources */,
 				22A4B98A2570AC4500304088 /* HQLGrdmVew.m in Sources */,
@@ -817,6 +860,7 @@
 				2843EB4718D4915800F13E2B /* ExamplesFormViewController.m in Sources */,
 				22A4B93B256FA49B00304088 /* HQLProvinceManager.m in Sources */,
 				BF01E9281C21F0BB00BDE045 /* XLFormInlineSegmentedCell.m in Sources */,
+				227CD17B25B809910030E9D3 /* HQLMessageSettingFormViewController.m in Sources */,
 				DEB8235C1AD5529A00AF9FE2 /* FormattersViewController.m in Sources */,
 				22A4B945256FA8C300304088 /* HQLProvincePickViewViewController.m in Sources */,
 				22A4B9772570A27000304088 /* HQLInsuredPaymentDetailQueryFormViewController.m in Sources */,

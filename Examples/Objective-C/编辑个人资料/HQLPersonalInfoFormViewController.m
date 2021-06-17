@@ -10,7 +10,7 @@
 #import <JKCategories.h>
 
 // View
-#import "HQLCityPickerCell.h"
+#import "HQLCityInlinePickerCell.h"
 #import "HQLProvinceManager.h"
 
 static NSString *const KHeadImage = @"headImage";
@@ -70,7 +70,6 @@ static const CGFloat KRowHeight = 60.0f;
     // 头像
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KHeadImage rowType:XLFormRowDescriptorTypeImage title:@"头像"];
     row.height = KRowHeight;
-    
     row.value = [UIImage imageNamed:@"default_avatar"];
     [section addFormRow:row];
     
@@ -108,7 +107,7 @@ static const CGFloat KRowHeight = 60.0f;
     
     // 城市
     // !!!: 自定义城市选择器，pick view
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:KCityName rowType:HQLFormRowDescriptorTypeCityPickerView title:@"城市"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:KCityName rowType:HQLFormRowDescriptorTypeCityInlinePickerCell title:@"城市"];
     row.required = YES;
     // 根据用户信息初始化当前城市
     HQLProvinceManager *provinceManager = [HQLProvinceManager sharedManager];
@@ -116,7 +115,7 @@ static const CGFloat KRowHeight = 60.0f;
     row.value = provinceManager;
     row.noValueDisplayText = @"请选择当前城市";
     [section addFormRow:row];
-    
+        
     // 签名
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KSignature rowType:XLFormRowDescriptorTypeTextView title:@"签名"];
     row.height = 80.0f;

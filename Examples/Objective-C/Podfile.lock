@@ -173,6 +173,7 @@ PODS:
     - Mantle/extobjc (= 2.1.6)
   - Mantle/extobjc (2.1.6)
   - Masonry (1.1.0)
+  - RSKImageCropper (3.0.0)
   - SHSPhoneComponent (2.32)
   - Toast (4.0.0)
   - XLData (2.0.0):
@@ -208,6 +209,7 @@ DEPENDENCIES:
   - LBXScan/UI
   - Mantle
   - Masonry
+  - RSKImageCropper
   - SHSPhoneComponent
   - Toast
   - XLData (from `https://github.com/xmartlabs/XLData.git`, commit `1f9019b56242a2019c7f7e11ec4ef823c397ebcf`)
@@ -224,6 +226,7 @@ SPEC REPOS:
     - LBXScan
     - Mantle
     - Masonry
+    - RSKImageCropper
     - SHSPhoneComponent
     - Toast
 
@@ -249,11 +252,12 @@ SPEC CHECKSUMS:
   LBXScan: 90ca10d0c38fb4a5a6980d7782354f3f69f50093
   Mantle: 4c0ed6ce47c96eccc4dc3bb071deb3def0e2c3be
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  RSKImageCropper: 81f449b4df96bdaf28e1ad6dcce28dcda2235458
   SHSPhoneComponent: c491cf87a0d5c3fb11b8f54100d05fd2706cb401
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   XLData: df725c6179e2e0c80bf56a1ecad9afd169707a6d
   XLForm: eb04ea4104f26250b70a72a7fa2eed3748dca5cd
 
-PODFILE CHECKSUM: ac2b1b3ae6bf5f59ac96cc247ee90ce22a3e085f
+PODFILE CHECKSUM: be63128d55f6ab6952402cf19a25dba0ac9236ff
 
 COCOAPODS: 1.9.3

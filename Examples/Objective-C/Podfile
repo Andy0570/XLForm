@@ -20,6 +20,9 @@ pod 'CustomIOSAlertView'
 pod 'Toast'
 pod 'Mantle'
 
+# 图片裁剪器
+pod 'RSKImageCropper'
+
 # 二维码扫描
 pod 'LBXScan/LBXNative'
 pod 'LBXScan/UI'
